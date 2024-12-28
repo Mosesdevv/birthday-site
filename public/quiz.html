@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love Letter</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1b263b, #415a77);
+            font-family: 'Georgia', serif;
+            margin: 0;
+            color: #fefefe;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        a {
+    color: #fefefe;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+a:hover {
+    background-color: #fefefe;
+    color: #415a77;
+    transform: scale(1.1);
+}
+
+/* Container for horizontal layout */
+.link-container {
+    display: flex;
+    justify-content: center; /* Center the links horizontally */
+    gap: 20px; /* Space between the links */
+    margin-top: 20px; /* Space from the top */
+}
+
+        .scrolling-text-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            perspective: 1000px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .scrolling-text {
+            position: absolute;
+            width: 80%;
+            text-align: center;
+            bottom: -300px;
+            transform: rotateX(20deg);
+            animation: scrollUp 200s linear infinite;
+            font-size: 1.5rem;
+            line-height: 2.5rem;
+        }
+
+        @keyframes scrollUp {
+            0% {
+                transform: rotateX(20deg) translateY(100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: rotateX(20deg) translateY(-200%);
+                opacity: 0;
+            }
+        }
+
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .music-controls button {
+            background: none;
+            border: 2px solid #fefefe;
+            border-radius: 50%;
+            color: #fefefe;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .music-controls button:hover {
+            background: #fefefe;
+            color: #415a77;
+            transform: scale(1.2);
+        }
+
+        .music-controls span {
+            font-size: 1rem;
+            color: #fefefe;
+        }
+    </style>
+</head>
+<body>
+    <div class="link-container">
+        <a href="best_moments.html">Romantic Memories</a>
+        <a href="welcome.html">Welcome Page</a>
+        <a href="index.html">Login Page</a>
+    </div>
+    
+    <div class="scrolling-text-container">
+        <div class="scrolling-text">
+            <p>
+                Dearest Chinemelumm,<br><br>
+                In the universe of countless stars, you are my guiding light.<br><br>
+                My love, it's your dayyyyyyyyyyyyyyyyyyyyyyyyyyyyyy welcome to being old like the rest of us old people😂<br><br>
+                I love you so much and I wanted you to know that my world is a better place because it has you in it ,<br><br>
+                my heaven sent woman.I couldn't pick up a theme for this so I said I'll just write from my head again and now I feel like you should know what I love about you and <br><br>
+                what I want you to do this year .I love that you are the most caring person I know and basically because you actually do care for me,<br><br>
+                I love that your presence is like a pain reliever to me every time I need someone to make me happy just seeing you be happy and feeling good makes me happy,<br><br>
+                I love that you try to make our relationship work and you never give up on us or me ,<br><br>
+                I Love that you are smart and hardworking,<br><br>
+                I love that you are innocent ,<br><br>
+                I love that you know God too babe and getting to what I think you should do this year I want you to know that you are beautiful,<br><br>
+                I want you to feel confident about your body and yourself,<br><br>
+                I want you to be more ambitious than you have ever been ,<br><br>
+                I want you to trust God more and believe in his words for you and 
+                I want you to be better for me yourself and everyone around you .<br><br>
+                I love you baby ❤️tho you make me upset but that's just part of it .<br><br>
+                Thank you for being with me and I hope the year brings more than you can imagine for us in memories and shared wins my love.<br><br>
+                Every moment spent with you feels like a melody, a symphony of love<br><br>
+                that plays endlessly in my heart.<br><br>
+                Today, I celebrate not just your birthday, but the wonderful soul
+                that you are. You are my sunshine on cloudy days, my confidant, and my
+                greatest joy.<br><br>
+                As this love song plays, may it echo how deeply I cherish and adore
+                you and one day it becomes our reality.<br><br>
+                Forever yours,<br>
+                Moses
+            </p>
+        </div>
+    </div>
+
+    <div class="music-controls">
+        <button id="toggleMusic">⏸</button>
+        
+        <audio id="loveSong" src="one life.m4a" autoplay loop></audio>
+    </div>
+
+    <script>
+        const audio = document.getElementById("loveSong");
+        const toggleButton = document.getElementById("toggleMusic");
+
+        toggleButton.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                toggleButton.textContent = "⏸";
+            } else {
+                audio.pause();
+                toggleButton.textContent = "▶";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Shake animation for fake girlfriend message */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Continuous scrolling animation */
+        @keyframes scrollUp {
+            0% { transform: translateY(0%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0%); }
+        }
+
+        .scrolling-images-wrapper {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .scrolling-images {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .scrolling-images img {
+            width: 200px;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .scroll-up {
+            animation: scrollUp 20s linear infinite;
+        }
+
+        .scroll-down {
+            animation: scrollDown 20s linear infinite;
+        }
+
+        .flex-container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .column {
+            width: 50%;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scroll-container {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-purple-200">
+
+    <!-- Flex container for left and right side -->
+    <div class="flex-container">
+        
+        <!-- Left side (Form and Header) -->
+        <div class="flex-1 flex flex-col justify-center items-center bg-lilac-200 p-6">
+            <h1 class="text-3xl font-bold mb-6 text-lilac-700">Nemelumm's Birthday Wishes</h1>
+            <form id="loginForm" action="submit" class="w-full max-w-sm space-y-4">
+                <div>
+                    <label for="nickname" class="block text-sm font-medium text-lilac-700">Your Nickname</label>
+                    <input type="text" id="nickname" placeholder="Nickname" class="w-full p-2 border border-lilac-300 rounded-md" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-lilac-700">Password</label>
+                    <input type="password" id="password" placeholder="Password" class="w-full p-2 border border-lilac-300 rounded-md" required>
+                </div>
+                <button type="submit" class="w-full py-2 bg-blue-500 text-white rounded-md">Lets take a walk</button>
+                <div class="text-center">
+                    <div>
+                        <p class="text-lilac-700 text-sm p-2">Hint for Nickname: Think of a Star Wars term for a learner, word starts with young</p>
+                        <p class="text-lilac-700 text-sm">Hint for Password: It's a dish that you know is your boyfriend's favorite food, especially if it's fried and sweet. </p>
+                    </div>
+                    
+                </div>
+            </form>
+
+            <p id="errorMessage" class="text-red-500 mt-4 hidden shake">You're a fake girlfriend! 😜</p>
+            <div>
+                <label for="music" class="block text-sm font-medium text-center text-lilac-700 p-2"> Here's a song for you my love: start typing to listen </label>
+                <audio id="audioPlayer" autoplay>
+                    <source src="other.m4a" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+
+        <!-- Right side (Scrolling Images in Two Columns) -->
+        <div class="flex-1 bg-lilac-300 overflow-hidden">
+            <div class="flex-container">
+                <!-- Column 1 (Left side images) -->
+                <div class="column">
+                    <div class="scroll-container">
+                        <div class="scrolling-images-wrapper">
+                            <div class="scrolling-images scroll-up">
+                                <img src="images/image1.jpg" alt="Image 1">
+                                <img src="images/image2.jpg" alt="Image 2">
+                                <img src="images/image3.jpg" alt="Image 3">
+                                <img src="images/image4.jpg" alt="Image 4">
+                                <img src="images/image5.jpg" alt="Image 5">
+                            </div>
+
+                            <div class="scrolling-images scroll-up">
+                                <img src="images/image1.jpg" alt="Image 1">
+                                <img src="images/image2.jpg" alt="Image 2">
+                                <img src="images/image3.jpg" alt="Image 3">
+                                <img src="images/image4.jpg" alt="Image 4">
+                                <img src="images/image5.jpg" alt="Image 5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2 (Right side images) -->
+                <div class="column">
+                    <div class="scroll-container">
+                        <div class="scrolling-images-wrapper">
+                            <div class="scrolling-images scroll-down">
+                                <img src="images/image1.jpg" alt="Image 1">
+                                <img src="images/image2.jpg" alt="Image 2">
+                                <img src="images/image3.jpg" alt="Image 3">
+                                <img src="images/image4.jpg" alt="Image 4">
+                                <img src="images/image5.jpg" alt="Image 5">
+                            </div>
+
+                            <div class="scrolling-images scroll-down">
+                                <img src="images/image1.jpg" alt="Image 1">
+                                <img src="images/image2.jpg" alt="Image 2">
+                                <img src="images/image3.jpg" alt="Image 3">
+                                <img src="images/image4.jpg" alt="Image 4">
+                                <img src="images/image5.jpg" alt="Image 5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const correctNickname = "young padawan";
+        const correctPassword = "plantain";
+
+        document.getElementById("nickname").addEventListener("input", function () {
+    const audio = document.getElementById("audioPlayer");
+    if (audio.paused) {
+        audio.play(); // Start the song
+    }
+});
+
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nickname = document.getElementById("nickname").value.trim().toLowerCase();
+            const password = document.getElementById("password").value.trim().toLowerCase();
+
+            if (nickname === correctNickname && password === correctPassword) {
+                window.location.href = "welcome.html"; // Redirect to a welcome page
+            } else {
+                document.getElementById("errorMessage").classList.remove("hidden");
+            }
+        });
+    </script>
+
+</body>
+</html>

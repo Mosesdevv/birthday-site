@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Memory Collage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #d48cbc, #d4749c);
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .collage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 2rem;
+        }
+
+        .memory {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .memory img, .memory video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .memory:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 100%;
+            max-height: 70%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content img, .modal-content video {
+            width: 60%;
+            height: 60%;
+            border-radius: 12px;
+        }
+
+        .modal-caption {
+            color: #ff7eb3;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        a {
+    color: #fefefe;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+a:hover {
+    background-color: #fefefe;
+    color: #415a77;
+    transform: scale(1.1);
+}
+
+/* Container for horizontal layout */
+.link-container {
+    display: flex;
+    justify-content: center; /* Center the links horizontally */
+    gap: 20px; /* Space between the links */
+    margin-top: 20px; /* Space from the top */
+}
+
+        .close-btn:hover {
+            background: #ff7eb3;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff7eb3;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-player button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .music-player button:hover {
+            transform: scale(1.2);
+        }
+
+        /* Category Filter Styles */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .filter-buttons button {
+            background-color: #ff7eb3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 10px;
+            border-radius: 8px;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #ff758c;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="link-container">
+        <a href="welcome.html">Welcome Page</a>
+        <a href="index.html">Login Page</a>
+    </div>
+    
+    <h1>Our Timeless Memories</h1>
+
+    <!-- Category Filter -->
+    <div class="filter-buttons">
+        <button onclick="filterCategory('romantic')" class="active">Romantic Highlights</button>
+        <button onclick="filterCategory('adventure')">Adventure Highlights</button>
+    </div>
+
+    <!-- Collage Container -->
+    <div class="collage">
+        <!-- Romantic Highlights (Videos) -->
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny1.mp4', 'One of our many illegal frequent dates to PG Caf😂')">
+            <video src="images/chinny1.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny2.mp4', 'You were feeling like a princess this day 😂 on top small gown you were short but now you have grown small ')">
+            <video src="images/chinny2.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny3.mp4', 'I lied 😂 you were not walking well oya I am joking')">
+            <video src="images/chinny3.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny4.mp4', 'An unforgettable night together, best carol it was fun, especially that ucl song part')">
+            <video src="images/chinny4.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny5.mp4', 'Mother Mary')">
+            <video src="images/chinny5.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny6.mp4', 'Thanks for Coming to seee me on my birthday, I am not coming to see you tho')">
+            <video src="images/chinny6.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny7.mp4', 'Last Sunday')">
+            <video src="images/chinny7.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny8.mp4', 'You wanted to eat me in a not demure way😂')">
+            <video src="images/chinny8.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny9.mp4', 'Exploring Lagos together , more of that this year')">
+            <video src="images/chinny9.mp4" muted></video>
+        </div>
+        <div class="memory romantic" onclick="openModal('video', 'images/chinny10.mp4', 'You look nice here ')">
+            <video src="images/chinny10.mp4" muted></video>
+        </div>
+
+        <!-- Adventure Highlights (Images) -->
+        <div class="memory adventure" onclick="openModal('image', 'images/image6.jpg', 'The moment we first met, you were all over me 😂')">
+            <img src="images/image6.jpg" alt="Memory 1">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image7.jpg', 'My biggest supporter')">
+            <img src="images/image7.jpg" alt="Memory 2">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image8.jpg', 'Who said I can not take pictures again')">
+            <img src="images/image8.jpg" alt="Memory 3">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image9.jpg', 'Swim Date')">
+            <img src="images/image9.jpg" alt="Memory 4">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image10.jpg', 'see smile on top small peck 😂')">
+            <img src="images/image10.jpg" alt="Memory 5">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image11.jpg', 'Actual first date , your mummy called me and was doing investigation😂😂')">
+            <img src="images/image11.jpg" alt="Memory 6">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image12.jpg', 'Someone tryin to work and someone disturbing')">
+            <img src="images/image12.jpg" alt="Memory 7">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image13.jpg', 'first date see my skin first and guess why you dont have lip gloss on your mouth hmmmmmmmm sus? ')">
+            <img src="images/image13.jpg" alt="Memory 8">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image14.jpg', 'My Dad says I look like I am getting married 😂')">
+            <img src="images/image14.jpg" alt="Memory 9">
+        </div>
+        <div class="memory adventure" onclick="openModal('image', 'images/image15.jpg', 'A new adventure starts my love ❤️')">
+            <img src="images/image15.jpg" alt="Memory 10">
+        </div>
+    </div>
+
+    <!-- Modal for Fullscreen View -->
+    <div id="modal" class="modal">
+        <button class="close-btn" onclick="closeModal()">Close</button>
+        <div class="modal-content"></div>
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <button onclick="toggleMusic()" id="musicToggle">▶</button>
+        <span>Playing: <strong>Your Love Song</strong></span>
+        <audio id="backgroundMusic" src="message.m4a" loop></audio>
+    </div>
+    <div id="backgroundAnimation"></div>
+    <script>
+        const modal = document.getElementById('modal');
+        const modalContent = document.querySelector('.modal-content');
+        const modalCaption = document.getElementById('modalCaption');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicPlayer = document.getElementById('musicPlayer');
+    
+        let musicPlaying = false;
+    
+        function toggleMusic() {
+            if (musicPlaying) {
+                backgroundMusic.pause();
+                musicToggle.textContent = '▶';
+                musicPlaying = false;
+            } else {
+                backgroundMusic.play();
+                musicToggle.textContent = '⏸';
+                musicPlaying = true;
+            }
+        }
+    
+        function openModal(type, src, caption) {
+            modal.classList.add('active');
+            modalContent.innerHTML = '';
+            let element;
+            if (type === 'image') {
+                element = document.createElement('img');
+                element.src = src;
+            } else if (type === 'video') {
+                element = document.createElement('video');
+                element.src = src;
+                element.controls = true;
+                element.autoplay = true;
+            }
+    
+            modalContent.appendChild(element);
+            modalCaption.textContent = caption;
+        }
+    
+        function closeModal() {
+            modal.classList.remove('active');
+            modalContent.innerHTML = '';
+        }
+    
+        function filterCategory(category) {
+            const romanticItems = document.querySelectorAll('.romantic');
+            const adventureItems = document.querySelectorAll('.adventure');
+            
+            if (category === 'romantic') {
+                romanticItems.forEach(item => item.style.display = 'block');
+                adventureItems.forEach(item => item.style.display = 'none');
+            } else if (category === 'adventure') {
+                romanticItems.forEach(item => item.style.display = 'none');
+                adventureItems.forEach(item => item.style.display = 'block');
+            }
+        }
+    
+        // Initialize with Romantic category active
+        filterCategory('romantic');
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Birthday Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+        .fade-text {
+            animation: fadeInOut 4s linear infinite;
+        }
+        a {
+    color: #fefefe;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+a:hover {
+    background-color: #fefefe;
+    color: #415a77;
+    transform: scale(1.1);
+}
+
+/* Container for horizontal layout */
+.link-container {
+    display: flex;
+    justify-content: center; /* Center the links horizontally */
+    gap: 20px; /* Space between the links */
+    margin-top: 20px; /* Space from the top */
+}
+        .slide-in {
+            animation: slideIn 1s ease-out;
+        }
+        .folder {
+            background-color: #cc2369; /* Bright Orange */
+            border-radius: 12px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .folder:hover {
+            background-color: #2fc7a1; /* Darker Orange */
+            transform: scale(1.1);
+        }
+        .folder-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center h-screen">
+
+    <!-- Interactive "22" Page -->
+    <div class="link-container">
+        <a href="index.html">Login Page</a>
+    </div>
+    
+    <div id="interactivePage" class="absolute inset-0 flex flex-col items-center justify-center bg-purple-800 text-white">
+        <div class="text-9xl flex gap-8">
+            <button id="first2" class="hover:text-yellow-300">2</button>
+            <button id="second2" class="hover:text-yellow-300" disabled>2</button>
+        </div>
+        <p class="mt-4 text-xl">22 YEARS OLD PADAWAN, CLICK THE NUMBERS MY LOVE</p>
+    </div>
+
+    <!-- Main Birthday Page -->
+    <div id="mainPage" class="hidden absolute inset-0 bg-purple-600 text-white flex flex-col items-center justify-center">
+        <h1 class="text-6xl font-bold mb-8 text-white">Happy Birthday, Nemelumm!</h1>
+        <div id="messageContainer" class="text-center text-2xl font-light leading-relaxed max-w-2xl mb-8"></div>
+        
+        <div class="mt-8 flex gap-8">
+            <div id="bestMomentsBtn" class="folder">
+                <div class="folder-text">Best Moments</div>
+            </div>
+            <div id="quizBtn" class="folder">
+                <div class="folder-text">My Words</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio for Song -->
+    <audio id="birthdaySong" src="one life.m4a" preload="auto" loop></audio>
+
+    <script>
+        // Start the song as soon as the page loads
+        const birthdaySong = document.getElementById("birthdaySong");
+        birthdaySong.play();
+
+        // Interactive "22" Page Logic
+        const first2 = document.getElementById("first2");
+        const second2 = document.getElementById("second2");
+        const interactivePage = document.getElementById("interactivePage");
+        const mainPage = document.getElementById("mainPage");
+
+        // Handle number clicks on "22" Page
+        let numbersClicked = 0;
+        first2.addEventListener("click", () => {
+            first2.classList.add("text-yellow-300");
+            numbersClicked++;
+            if (numbersClicked === 1) {
+                second2.disabled = false;
+            }
+        });
+
+        second2.addEventListener("click", () => {
+            second2.classList.add("text-yellow-300");
+            numbersClicked++;
+            if (numbersClicked === 2) {
+                interactivePage.classList.add("hidden");
+                mainPage.classList.remove("hidden");
+                mainPage.classList.add("slide-in");
+            }
+        });
+
+        // Birthday Message Logic
+        const messages = [
+            "Happy Birthday MY LOVE!",
+            "Thank you for being with me another 365 days",
+            "You deserve the best I can offer",
+            "I hope you like this and Happy birthday",
+            "I love you!"
+        ];
+
+        const messageContainer = document.getElementById("messageContainer");
+        let messageIndex = 0;
+
+        function showNextMessage() {
+            messageContainer.innerHTML = `<span class="fade-text">${messages[messageIndex]}</span>`;
+            messageIndex = (messageIndex + 1) % messages.length;
+        }
+
+        setInterval(showNextMessage, 4000);
+        showNextMessage(); // Show the first message immediately
+
+        // Handle folder clicks to navigate to different pages
+        document.getElementById("bestMomentsBtn").addEventListener("click", () => {
+            window.location.href = "best_moments.html"; // Link to the Best Moments page
+        });
+
+        document.getElementById("quizBtn").addEventListener("click", () => {
+            window.location.href = "quiz.html"; // Link to the Quiz page
+        });
+    </script>
+</body>
+</html>
